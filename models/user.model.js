@@ -1,16 +1,18 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const userSchema = new Schema({
-    firstName: String,
-    lastName: String,
+    email:String,
+    firstname: String,
+    lastname: String,
     username: String,
     password: String,
-    userHandler: String,
+    usernandler: String,
     bio: String,
     link: String,
     profilePic: String,
     createdAt: String,
     updatedAt: String,
+    following:[String]
 })
 
 const user = mongoose.model('user', userSchema);

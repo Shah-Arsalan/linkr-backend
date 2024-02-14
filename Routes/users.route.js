@@ -49,11 +49,14 @@ router.route('/login')
         console.log("The found user is", foundUser)
         console.log("founduser.password", foundUser[0].password)
         console.log("the email of founduser is", foundUser[0].email)
+        const {lastname , firstname} = foundUser[0];
+        console.log("last name is" , lastname);
+        console.log("fistname is", firstname);
         if (password === foundUser[0].password) {
           const token = jwt.sign({
             userId: foundUser[0].email
           }, secret, { expiresIn: '1h' });
-          res.status(201).json({ email, token })
+          res.status(201).json({ email, token , firstname , lastname })
         }
         else {
           res.status(401).json({ message: "password entered is wrong" })
