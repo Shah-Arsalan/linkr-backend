@@ -12,16 +12,10 @@ router.route("/")
         await newPost.save()
         .then(()=> console.log("new post" , newPost))
         .catch((error) => console.log('the error is ' , error))
-
         const allPosts = await post.find();
         res.status(201).json({posts : allPosts})
-
-
-
-
-
     }catch(error){
-        console.log(error)
+        res.status(500).json({ success: false, message: error.message })
 
     }
 })
