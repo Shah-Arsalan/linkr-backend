@@ -19,6 +19,16 @@ router.route("/")
 
     }
 })
+.get(async(req,res) => {
+    try{
+
+        const allPosts = await post.find();
+        res.status(201).json({posts:allPosts})
+
+    }catch(error){
+        res.status(500).json({success:false , message : error.message})
+    }
+})
 
 
 module.exports = router;
