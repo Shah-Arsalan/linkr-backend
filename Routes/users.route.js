@@ -99,4 +99,20 @@ router.route("/follow").post(async (req, res) => {
   }
 });
 
+
+router.route('/updateuser').post(async(req , res)=>{
+  try{
+    const {bio ,link , email} = req.body
+    const currentUser = await user.findOne({email:email});
+    currentUser.bio = bio;
+    currentUser.link = link;
+    await currentUser.save();
+    const allUsers = await user.find()
+    res.status(200).json({users:allUsers})
+
+  }catch(error){
+    res.status(500).json({success:false , message : "Internal Server Error"})
+  }
+})
+
 module.exports = router;
